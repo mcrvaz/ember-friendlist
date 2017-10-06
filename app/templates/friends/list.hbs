@@ -1,0 +1,10 @@
+<h1>Amigos</h1>
+<ul>
+    {{#each model as |friend|}}
+        <li>
+            {{#link-to "friends.detail" friend}}
+                <strong>{{friend.fullName}}</strong> - Amigos desde {{moment-format friend.friendsSince 'DD/MM/YYYY'}} 
+            {{/link-to}}
+        </li>
+    {{/each}}
+</ul>
