@@ -3,8 +3,8 @@
     {{#modal-dialog onClose="toggleModal"
         targetAttachment="center"
         translucentOverlay=true}}
-        <p>Amigo cadastrado.</p>
-        <button {{action 'goBack'}}>Voltar</button>
+        <label>Amigo cadastrado</label>
+        <button class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
     {{/modal-dialog}}
 {{/if}}
 {{back-button route="friends.list"}}
