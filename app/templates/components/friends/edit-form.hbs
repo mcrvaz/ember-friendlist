@@ -1,7 +1,7 @@
 {{#with (changeset model FriendValidations) as |changeset|}}
 
 <h1>Editar</h1>
-<form {{action "save" changeset on="submit"}}>
+<form {{action "confirmSave" changeset on="submit"}}>
     <p>Nome: {{input type="text" value=changeset.name}}</p>
     <p>Sobrenome: {{input type="text" value=changeset.lastname}}</p>
     <p>Data de Início da Amizade: {{bootstrap-datepicker 
@@ -19,5 +19,15 @@
     </ul>
     <button type="submit">Editar</button>
 </form>
+
+{{#if isShowingConfirmModal}}
+    {{#modal-dialog onClose="toggleConfirmModal"
+        targetAttachment="center"
+        translucentOverlay=true}}
+        <p>Deseja realmente salvar?</p>
+        <button {{action 'rollback' changeset}}>Não</button>
+        <button {{action 'save' changeset}}>Sim</button>
+    {{/modal-dialog}}
+{{/if}}
 
 {{/with}}

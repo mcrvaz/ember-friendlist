@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from "ember-data";
-import moment from "moment";
 
 //expected {friend: [{"_id":"","name":"","lastname":"","friendsSince":"","__v":""}]}
 export default DS.RESTSerializer.extend({

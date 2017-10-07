@@ -1,9 +1,12 @@
-{{!-- <h1>Editar</h1>
-<form {{action "update" model.id on="submit"}}>
-    <p>Nome: {{input type="text" value=model.name}}</p>
-    <p>Sobrenome: {{input type="text" value=model.lastname}}</p>
-    <p>Data de Início da Amizade: {{input type="date" value=model.friendsSince}}</p>
-    <button type="submit">Editar</button>
-</form> --}}
 {{friends/edit-form model=model save=(action 'save')}}
+
+{{#if isShowingSuccessModal}}
+    {{#modal-dialog onClose="toggleSuccessModal"
+        targetAttachment="center"
+        translucentOverlay=true}}
+        <p>Amigo cadastrado.</p>
+        <button {{action 'goBack'}}>Voltar</button>
+    {{/modal-dialog}}
+{{/if}}
+
 {{back-button route="friends.detail" model=model}}

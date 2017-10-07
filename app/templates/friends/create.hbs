@@ -1,2 +1,10 @@
 {{friends/create-form model=model save=(action 'save')}}
+{{#if isShowingModal}}
+    {{#modal-dialog onClose="toggleModal"
+        targetAttachment="center"
+        translucentOverlay=true}}
+        <p>Amigo cadastrado.</p>
+        <button {{action 'goBack'}}>Voltar</button>
+    {{/modal-dialog}}
+{{/if}}
 {{back-button route="friends.list"}}

@@ -4,14 +4,17 @@ import FriendValidations from '../../validations/friends';
 
 export default Ember.Component.extend({
     FriendValidations,
+    isShowingConfirmModal: false,
+    
     previousMonth: moment().subtract(1, 'months').format("DD/MM/YYYY"),
     nextMonth: moment().add(1, 'months').format("DD/MM/YYYY"),
-    didReceiveAttrs() {
-        this._super(...arguments);
-        const changeset = this.get('model');
-        changeset.set('friendsSince', moment(changeset.friendsSince).format("YYYY-MM-DD"));        
-    },
     actions: {
+        toggleConfirmModal() {
+            this.toggleProperty('isShowingConfirmModal');
+        },
+        confirmSave() {
+            this.send('toggleConfirmModal');  
+        },
         save(changeset) {
             var self = this;
             changeset.validate().then(function() {
@@ -22,5 +25,9 @@ export default Ember.Component.extend({
                 self.set('showErrors', true);
             });
         },
+        rollback(changeset) {
+            changeset.rollback();
+            this.send('toggleConfirmModal');
+        }
     }
 });
