@@ -31,5 +31,11 @@ export default DS.RESTSerializer.extend({
         let modelName = primaryModelClass.modelName;
         payload[modelName][this.primaryKey] = id;     
         return this._super(store, primaryModelClass, payload, id, requestType);
+    },
+    normalizeQueryResponse(store, primaryModelClass, payload, id, requestType) {
+        //[{"_id":"","name":"","lastname":"","friendsSince":"","__v":""}]
+        let modelName = primaryModelClass.modelName;
+        payload = { [modelName]: payload };
+        return this._super(store, primaryModelClass, payload, id, requestType);
     }
 });

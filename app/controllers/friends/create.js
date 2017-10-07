@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
             this.toggleProperty('isShowingModal');
         },
         save(changeset) {
-            return changeset.save().then((e) => {
+            return changeset.save().then(() => {
                 this.send('toggleModal');     
             });
         },

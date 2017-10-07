@@ -1,5 +1,4 @@
 import Ember from 'ember';
-import moment from 'moment';
 
 export default Ember.Controller.extend({
     isShowingSuccessModal: false,
@@ -12,7 +11,7 @@ export default Ember.Controller.extend({
             this.toggleProperty('isShowingSuccessModal');
         },
         save(changeset) {
-            return changeset.save().then((e) => {
+            return changeset.save().then(() => {
                 this.send('toggleSuccessModal');
             });
         },
