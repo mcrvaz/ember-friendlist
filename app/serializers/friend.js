@@ -6,19 +6,29 @@ export default DS.RESTSerializer.extend({
     serializeIntoHash(hash, type, record, options) {
         Ember.merge(hash, this.serialize(record, options));
     },
-    normalizeSaveResponse(store, primaryModelClass, payload, id, requestType) {
+    normalizeFindRecordResponse(store, primaryModelClass, payload, id, requestType) {
+        //{"_id":"","name":"","lastname":"","friendsSince":"","__v":""}
         let modelName = primaryModelClass.modelName;
-        let payloadData = payload[modelName][modelName];
-        payload = {
-            [modelName]: payloadData
-        };
+        payload = { [modelName]: payload };
         return this._super(store, primaryModelClass, payload, id, requestType);
     },
-    normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+    normalizeFindAllResponse(store, primaryModelClass, payload, id, requestType) {
+        //[{"_id":"","name":"","lastname":"","friendsSince":"","__v":""}]
         let modelName = primaryModelClass.modelName;
-        payload = {
-            [modelName]: payload
-        };
+        payload = { [modelName]: payload };
+        return this._super(store, primaryModelClass, payload, id, requestType);
+    },
+    normalizeSaveResponse(store, primaryModelClass, payload, id, requestType) {
+        //{"sucess":true,"friend":{"_id":"", "name":"","lastname":"","friendsSince":""}}
+        let modelName = primaryModelClass.modelName;
+        let payloadData = payload[modelName];
+        payload = { [modelName]: payloadData };
+        return this._super(store, primaryModelClass, payload, id, requestType);
+    },
+    normalizeUpdateRecordResponse(store, primaryModelClass, payload, id, requestType) {
+        //{"sucess":true,"friend":{"name":"","lastname":"","friendsSince":""}}
+        let modelName = primaryModelClass.modelName;
+        payload[modelName][this.primaryKey] = id;
         return this._super(store, primaryModelClass, payload, id, requestType);
     },
 });
