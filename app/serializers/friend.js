@@ -12,7 +12,6 @@ export default DS.RESTSerializer.extend({
         payload = {
             [modelName]: payloadData
         };
-        debugger;
         return this._super(store, primaryModelClass, payload, id, requestType);
     },
     normalizeResponse(store, primaryModelClass, payload, id, requestType) {
