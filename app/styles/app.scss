@@ -1,2 +1,16 @@
 @import "ember-modal-dialog/ember-modal-structure";
 @import "ember-modal-dialog/ember-modal-appearance";
+@import "ember-bootstrap/bootstrap";
+
+.btn-toolbar.even {
+    display: flex;
+    justify-content: space-between;
+}
+
+.panel {
+    margin: 5% 0;
+}
+
+.btn-back {
+    margin-top: 1%;
+}

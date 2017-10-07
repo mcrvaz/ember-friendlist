@@ -1,32 +1,51 @@
 {{#with (changeset model FriendValidations) as |changeset|}}
 
-<h1>Editar</h1>
+<h1 class="text-center">Editar</h1>
 <form {{action "confirmSave" changeset on="submit"}}>
-    <p>Nome: {{input type="text" value=changeset.name}}</p>
-    <p>Sobrenome: {{input type="text" value=changeset.lastname}}</p>
-    <p>Data de Início da Amizade: {{bootstrap-datepicker 
-        value=changeset.friendsSince 
-        startDate=previousMonth endDate=nextMonth
-        autoclose=true 
-        format="dd/mm/yyyy" language="pt-BR"}}
-    </p>
-    <ul>
+    <div class="row">
+        <div class="col-sm-6 form-group">
+            <label>Nome:</label> 
+            {{input class="form-control" type="text" value=changeset.name}}
+        </div>
+        <div class="col-sm-6 form-group">
+            <label>Sobrenome:</label>  
+            {{input class="form-control" type="text" value=changeset.lastname}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 form-group">
+            <label>Data de Início da Amizade:</label>  
+            {{bootstrap-datepicker 
+                class="form-control"
+                value=changeset.friendsSince 
+                startDate=previousMonth endDate=nextMonth
+                autoclose=true 
+                format="dd/mm/yyyy" language="pt-BR"}}
+        </div>
+    </div>
+    <ul class="list-group">
         {{#each changeset.errors as |errorSet|}}
             {{#each errorSet.validation as |error|}}
-                <li>{{error}}</li>
+                <li class="list-group-item list-group-item-danger text-center">{{error}}</li>
             {{/each}}
         {{/each}}
     </ul>
-    <button type="submit">Editar</button>
+    <button class="btn btn-primary btn-block" type="submit">Editar</button>
 </form>
 
 {{#if isShowingConfirmModal}}
     {{#modal-dialog onClose="toggleConfirmModal"
         targetAttachment="center"
         translucentOverlay=true}}
-        <p>Deseja realmente salvar?</p>
-        <button {{action 'rollback' changeset}}>Não</button>
-        <button {{action 'save' changeset}}>Sim</button>
+        <label>Deseja realmente salvar?</label>
+        <div class="btn-toolbar even">
+            <div class="btn-group">
+                <button class="btn btn-primary" {{action 'save' changeset}}>Sim</button>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-danger" {{action 'rollback' changeset}}>Não</button>
+            </div>
+        </div>
     {{/modal-dialog}}
 {{/if}}
 

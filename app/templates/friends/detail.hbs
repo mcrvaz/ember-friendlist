@@ -1,7 +1,20 @@
-<h1>Amigo</h1>
-<p>Nome: {{model.name}}</p>
-<p>Sobrenome: {{model.lastname}}</p>
-<p>Data de Início da Amizade: {{moment-format model.friendsSince 'DD/MM/YYYY'}}</p>
+<h1 class="text-center">Amigo</h1>
+<div class="row">
+    <div class="col-sm-6">
+        <label>Nome: </label>
+        <p class="well well-sm">{{model.name}}</p> 
+    </div>
+    <div class="col-sm-6">
+        <label>Sobrenome:</label> 
+        <p class="well well-sm">{{model.lastname}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <label>Data de Início da Amizade:</label> 
+        <p class="well well-sm">{{moment-format model.friendsSince 'DD/MM/YYYY'}}</p>
+    </div>
+</div>
 
-<button>{{#link-to "friends.edit" model}}Editar{{/link-to}}</button>
+{{#link-to "friends.edit" model}}<button class="btn btn-primary btn-block">Editar</button>{{/link-to}}
 {{back-button route="friends.list"}}

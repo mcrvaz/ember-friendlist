@@ -1,5 +1,5 @@
 {{#if model}}
-    <button>{{#link-to route model}}Voltar{{/link-to}}</button>
+    {{#link-to route model}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
 {{else}}
-    <button>{{#link-to route}}Voltar{{/link-to}}</button>
+    {{#link-to route}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
 {{/if}}

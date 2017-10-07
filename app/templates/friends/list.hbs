@@ -1,12 +1,23 @@
-<h1 class="title">Amigos</h1>
-<ul class="friend-list">
-    {{#each model as |friend|}}
-        <li>
-            {{#link-to "friends.detail" friend}}
-                <strong>{{friend.fullName}}</strong> - Amigos desde {{moment-format friend.friendsSince 'DD/MM/YYYY'}} 
+<h1 class="text-center">Amigos</h1>
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Sobrenome</th>
+                <th>Amigos desde</th>
+            </tr>
+        </thead>
+        <tbody>
+        {{#each model as |friend|}}
+            {{#link-to "friends.detail" friend tagName="tr"}}
+                <td>{{friend.name}}</td> 
+                <td>{{friend.lastname}}</td> 
+                <td>{{moment-format friend.friendsSince 'DD/MM/YYYY'}}</td> 
             {{/link-to}}
-        </li>
-    {{/each}}
-</ul>
+        {{/each}}
+        </tbody>
+    </table>
+</div>
 
-<button>{{#link-to "friends.create"}}Novo{{/link-to}}</button>
+{{#link-to "friends.create"}}<button class="btn btn-primary btn-block">Novo</button>{{/link-to}}

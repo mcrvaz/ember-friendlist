@@ -5,7 +5,6 @@ import FriendValidations from '../../validations/friends';
 export default Ember.Component.extend({
     FriendValidations,
     isShowingConfirmModal: false,
-    
     previousMonth: moment().subtract(1, 'months').format("DD/MM/YYYY"),
     nextMonth: moment().add(1, 'months').format("DD/MM/YYYY"),
     actions: {

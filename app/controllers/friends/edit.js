@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
     isShowingSuccessModal: false,
     actions: {
         goBack() {
-            this.send('toggleConfirmModal');
+            this.send('toggleSuccessModal');
             this.transitionToRoute('friends.list'); 
         },
         toggleSuccessModal() {
