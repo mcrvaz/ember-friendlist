@@ -8,14 +8,18 @@ export default Ember.Component.extend({
     previousMonth: moment().subtract(1, 'months').format("DD/MM/YYYY"),
     nextMonth: moment().add(1, 'months').format("DD/MM/YYYY"),
     actions: {
-        toggleConfirmModal() {
-            this.toggleProperty('isShowingConfirmModal');
+        hideConfirmModal() {
+            this.set('isShowingConfirmModal', false);
+        },
+        showConfirmModal() {
+            this.set('isShowingConfirmModal', true);
         },
         confirmSave() {
-            this.send('toggleConfirmModal');  
+            this.send('showConfirmModal');  
         },
         save(changeset) {
             var self = this;
+            this.send('hideConfirmModal');
             changeset.validate().then(function() {
                 if(changeset.get("isValid")) {
                     changeset.set('friendsSince', moment(changeset.friendsSince).format("YYYY-MM-DD"));
@@ -26,7 +30,7 @@ export default Ember.Component.extend({
         },
         rollback(changeset) {
             changeset.rollback();
-            this.send('toggleConfirmModal');
+            this.send('hideConfirmModal');
         }
     }
 });

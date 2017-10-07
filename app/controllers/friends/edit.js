@@ -4,15 +4,18 @@ export default Ember.Controller.extend({
     isShowingSuccessModal: false,
     actions: {
         goBack() {
-            this.send('toggleSuccessModal');
+            this.send('hideSuccessModal');
             this.transitionToRoute('friends.list'); 
         },
-        toggleSuccessModal() {
-            this.toggleProperty('isShowingSuccessModal');
+        hideSuccessModal() {
+            this.set('isShowingSuccessModal', false);
+        },
+        showSuccessModal() {
+            this.set('isShowingSuccessModal', true);
         },
         save(changeset) {
             return changeset.save().then(() => {
-                this.send('toggleSuccessModal');
+                this.send('showSuccessModal');
             });
         },
     }

@@ -4,15 +4,18 @@ export default Ember.Controller.extend({
     isShowingModal: false,
     actions: {
         goBack() {
-            this.send('toggleModal');
+            this.send('hideModal');
             this.transitionToRoute('friends.list'); 
         },
-        toggleModal() {
-            this.toggleProperty('isShowingModal');
+        hideModal() {
+            this.set('isShowingModal', false);
+        },
+        showModal() {
+            this.set('isShowingModal', true);
         },
         save(changeset) {
             return changeset.save().then(() => {
-                this.send('toggleModal');     
+                this.send('showModal');     
             });
         },
     }

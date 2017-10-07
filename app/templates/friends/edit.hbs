@@ -1,7 +1,7 @@
 {{friends/edit-form model=model save=(action 'save')}}
 
 {{#if isShowingSuccessModal}}
-    {{#modal-dialog onClose="toggleSuccessModal"
+    {{#modal-dialog onClose="hideSuccessModal"
         targetAttachment="center"
         translucentOverlay=true}}
         <label>Amigo cadastrado</label>

@@ -1,6 +1,6 @@
 {{friends/create-form model=model save=(action 'save')}}
 {{#if isShowingModal}}
-    {{#modal-dialog onClose="toggleModal"
+    {{#modal-dialog onClose="hideModal"
         targetAttachment="center"
         translucentOverlay=true}}
         <label>Amigo cadastrado</label>
