@@ -1,4 +1,8 @@
-{{friends/edit-form model=model save=(action 'save')}}
+{{#if isShowingLoading}}
+    {{fontawesome-spinner}}
+{{else}}
+    {{friends/edit-form model=model save=(action 'save')}}
+{{/if}}
 
 {{#if isShowingSuccessModal}}
     {{#modal-dialog onClose="hideSuccessModal"

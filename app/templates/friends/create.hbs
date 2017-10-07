@@ -1,4 +1,9 @@
-{{friends/create-form model=model save=(action 'save')}}
+{{#if isShowingLoading}}
+    {{fontawesome-spinner}}
+{{else}}
+    {{friends/create-form model=model save=(action 'save')}}
+{{/if}}
+
 {{#if isShowingModal}}
     {{#modal-dialog onClose="hideModal"
         targetAttachment="center"
@@ -7,4 +12,5 @@
         <button class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
     {{/modal-dialog}}
 {{/if}}
+
 {{back-button route="friends.list"}}

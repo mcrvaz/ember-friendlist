@@ -13,6 +13,7 @@ Router.map(function() {
         this.route('edit', { path: 'edit/:friend_id' });
         this.route('list');
     });
+    this.route('not-found', { path: '/*path' });
 });
 
 export default Router;
