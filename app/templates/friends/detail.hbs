@@ -3,5 +3,5 @@
 <p>Sobrenome: {{model.lastname}}</p>
 <p>Data de Início da Amizade: {{moment-format model.friendsSince 'DD/MM/YYYY'}}</p>
 
-<button>{{#link-to "friends.list"}}Voltar{{/link-to}}</button>
 <button>{{#link-to "friends.edit" model}}Editar{{/link-to}}</button>
+{{back-button route="friends.list"}}

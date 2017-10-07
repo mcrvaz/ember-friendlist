@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import DS from "ember-data";
+import moment from "moment";
 
 //expected {friend: [{"_id":"","name":"","lastname":"","friendsSince":"","__v":""}]}
 export default DS.RESTSerializer.extend({
@@ -29,7 +30,7 @@ export default DS.RESTSerializer.extend({
     normalizeUpdateRecordResponse(store, primaryModelClass, payload, id, requestType) {
         //{"sucess":true,"friend":{"name":"","lastname":"","friendsSince":""}}
         let modelName = primaryModelClass.modelName;
-        payload[modelName][this.primaryKey] = id;
+        payload[modelName][this.primaryKey] = id;     
         return this._super(store, primaryModelClass, payload, id, requestType);
-    },
+    }
 });

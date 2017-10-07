@@ -1,8 +1,9 @@
-<h1>Editar</h1>
+{{!-- <h1>Editar</h1>
 <form {{action "update" model.id on="submit"}}>
     <p>Nome: {{input type="text" value=model.name}}</p>
     <p>Sobrenome: {{input type="text" value=model.lastname}}</p>
     <p>Data de Início da Amizade: {{input type="date" value=model.friendsSince}}</p>
     <button type="submit">Editar</button>
-</form>
-<button>{{#link-to "friends.detail" model}}Voltar{{/link-to}}</button>
+</form> --}}
+{{friends/edit-form model=model save=(action 'save')}}
+{{back-button route="friends.detail" model=model}}

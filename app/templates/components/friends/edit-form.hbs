@@ -1,0 +1,23 @@
+{{#with (changeset model FriendValidations) as |changeset|}}
+
+<h1>Editar</h1>
+<form {{action "save" changeset on="submit"}}>
+    <p>Nome: {{input type="text" value=changeset.name}}</p>
+    <p>Sobrenome: {{input type="text" value=changeset.lastname}}</p>
+    <p>Data de Início da Amizade: {{bootstrap-datepicker 
+        value=changeset.friendsSince 
+        startDate=previousMonth endDate=nextMonth
+        autoclose=true 
+        format="dd/mm/yyyy" language="pt-BR"}}
+    </p>
+    <ul>
+        {{#each changeset.errors as |errorSet|}}
+            {{#each errorSet.validation as |error|}}
+                <li>{{error}}</li>
+            {{/each}}
+        {{/each}}
+    </ul>
+    <button type="submit">Editar</button>
+</form>
+
+{{/with}}
