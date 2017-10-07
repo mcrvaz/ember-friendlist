@@ -1,5 +1,7 @@
-{{#if model}}
-    {{#link-to route model}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
-{{else}}
-    {{#link-to route}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
-{{/if}}
+<div id="back-button">
+    {{#if model}}
+        {{#link-to route model}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
+    {{else}}
+        {{#link-to route}}<button class="btn btn-default btn-block btn-back">Voltar</button>{{/link-to}}
+    {{/if}}
+</div>

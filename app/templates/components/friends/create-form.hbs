@@ -4,16 +4,19 @@
 <form {{action "save" changeset on="submit"}}>
     <div class="row">
         <div class="col-sm-6 form-group">
-            <label>Nome:</label> {{input class="form-control" type="text" value=changeset.name}}
+            <label>Nome:</label> 
+            {{input id="name-input" class="form-control" type="text" value=changeset.name}}
         </div>
         <div class="col-sm-6 form-group">
-            <label>Sobrenome:</label>  {{input class="form-control" type="text" value=changeset.lastname}}
+            <label>Sobrenome:</label>  
+            {{input id="lastname-input" class="form-control" type="text" value=changeset.lastname}}
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12 form-group">
             <label>Data de Início da Amizade:</label>  
             {{bootstrap-datepicker 
+                id="friendsSince-input"
                 class="form-control"
                 value=changeset.friendsSince 
                 startDate=previousMonth endDate=nextMonth
@@ -21,14 +24,14 @@
                 format="dd/mm/yyyy" language="pt-BR"}}
         </div>
     </div>
-    <ul class="list-group">
+    <ul id="errors" class="list-group">
         {{#each changeset.errors as |errorSet|}}
             {{#each errorSet.validation as |error|}}
                 <li class="list-group-item list-group-item-danger text-center">{{error}}</li>
             {{/each}}
         {{/each}}
     </ul>
-    <button class="btn btn-primary btn-block" type="submit">Cadastrar</button>
+    <button id="save-btn" class="btn btn-primary btn-block" type="submit">Cadastrar</button>
 </form>
 
 {{/with}}

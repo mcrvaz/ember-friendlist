@@ -1,20 +1,20 @@
 <h1 class="text-center">Amigo</h1>
 <div class="row">
     <div class="col-sm-6">
-        <label>Nome: </label>
-        <p class="well well-sm">{{model.name}}</p> 
+        <label id="name-label">Nome: </label>
+        <p id="name" class="well well-sm">{{model.name}}</p> 
     </div>
     <div class="col-sm-6">
-        <label>Sobrenome:</label> 
-        <p class="well well-sm">{{model.lastname}}</p>
+        <label id="lastname-label">Sobrenome:</label> 
+        <p id="lastname" class="well well-sm">{{model.lastname}}</p>
     </div>
 </div>
 <div class="row">
     <div class="col-sm-12">
-        <label>Data de Início da Amizade:</label> 
-        <p class="well well-sm">{{moment-format model.friendsSince 'DD/MM/YYYY'}}</p>
+        <label id="friendsSince-label">Data de Início da Amizade:</label> 
+        <p id="friendsSince" class="well well-sm">{{moment-format model.friendsSince 'DD/MM/YYYY'}}</p>
     </div>
 </div>
 
-{{#link-to "friends.edit" model}}<button class="btn btn-primary btn-block">Editar</button>{{/link-to}}
+{{#link-to "friends.edit" model}}<button id="edit" class="btn btn-primary btn-block">Editar</button>{{/link-to}}
 {{back-button route="friends.list"}}
