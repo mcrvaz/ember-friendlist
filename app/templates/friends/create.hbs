@@ -1,0 +1,8 @@
+<h1>Novo Amigo</h1>
+<form {{action "create" on="submit"}}>
+    <p>Nome: {{input type="text" value=name}}</p>
+    <p>Sobrenome: {{input type="text" value=lastname}}</p>
+    <p>Data de Início da Amizade: {{input type="date" value=friendsSince}}</p>
+    <button type="submit">Cadastrar</button>
+</form>
+<button>{{#link-to "friends.list"}}Voltar{{/link-to}}</button>
