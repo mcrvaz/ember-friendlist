@@ -25,8 +25,8 @@
         </div>
     </div>
     <ul id="errors" class="list-group">
-        {{#each changeset.errors as |errorSet|}}
-            {{#each errorSet.validation as |error|}}
+        {{#each validationErrors as |errorSet|}}
+            {{#each errorSet as |error|}}
                 <li class="list-group-item list-group-item-danger text-center">{{error}}</li>
             {{/each}}
         {{/each}}

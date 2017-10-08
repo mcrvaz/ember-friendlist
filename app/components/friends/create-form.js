@@ -9,6 +9,7 @@ export default Ember.Component.extend({
         let model = this.get('model');
         model.set('friendsSince', moment().toDate());
     },
+    validationErrors: [],
     previousMonth: moment().subtract(1, 'months').format("DD-MM-YYYY"),
     nextMonth: moment().add(1, 'months').format("DD-MM-YYYY"),
     actions: {
@@ -18,6 +19,8 @@ export default Ember.Component.extend({
                 if(changeset.get("isValid")) {
                     changeset.set('friendsSince', moment(changeset.get('friendsSince')).format("YYYY-MM-DD"));
                     self.attrs.save(changeset);
+                } else {
+                    self.set('validationErrors', changeset.get('errors').map((e) => e.validation));
                 }
             });
         },
