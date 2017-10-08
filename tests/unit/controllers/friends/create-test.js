@@ -1,4 +1,7 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor } from 'ember-qunit';
+import test from 'ember-sinon-qunit/test-support/test';
+import wait from 'ember-test-helpers/wait';
+import Changeset from 'ember-changeset';
 
 var controller;
 moduleFor('controller:friends/create', 'Unit | Controller | friends/create', {
@@ -7,10 +10,47 @@ moduleFor('controller:friends/create', 'Unit | Controller | friends/create', {
     }
 });
 
-// test('it exists', function(assert) {
-//     assert.ok(controller);
-// });
+test('shows loading', function(assert) {
+    controller.send('showLoading');
+    assert.equal(controller.get('isShowingLoading'), true);
+});
 
-// test('it exists', function(assert) {
-//     assert.ok(controller);
-// });
+test('hides loading', function(assert) {
+    controller.send('hideLoading');
+    assert.equal(controller.get('isShowingLoading'), false);
+});
+
+test('shows modal', function(assert) {
+    controller.send('showModal');
+    assert.equal(controller.get('isShowingModal'), true);
+});
+
+test('hides modal', function(assert) {
+    controller.send('hideModal');
+    assert.equal(controller.get('isShowingModal'), false);
+});
+
+test('hide modal and go back to friends/list', function(assert) {
+    const stub = this.stub(controller, 'transitionToRoute');
+    controller.send('goBack');
+    assert.equal(controller.get('isShowingModal'), false);
+    assert.equal(stub.calledWith('friends.list'), true);
+});
+
+test('show loading and after finished saving, hide loading', function(assert) {
+    const changeset = new Changeset({}, null);
+    controller.send('save', changeset);
+    assert.equal(controller.get('isShowingLoading'), true);
+    wait().then(() => {
+        assert.equal(controller.get('isShowingLoading'), false);
+    });
+});
+
+test('show modal after finished saving', function(assert) {
+    const changeset = new Changeset({}, null);
+    controller.send('save', changeset);
+    wait().then(() => {
+        assert.equal(controller.get('isShowingModal'), true);        
+    });
+});
+

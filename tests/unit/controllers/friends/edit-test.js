@@ -1,12 +1,55 @@
-import { moduleFor, test } from 'ember-qunit';
+import { moduleFor } from 'ember-qunit';
+import test from 'ember-sinon-qunit/test-support/test';
+import wait from 'ember-test-helpers/wait';
+import Changeset from 'ember-changeset';
 
+var controller;
 moduleFor('controller:friends/edit', 'Unit | Controller | friends/edit', {
-    // Specify the other units that are required for this test.
-    // needs: ['controller:foo']
+    beforeEach() {
+        controller = this.subject();
+    }
 });
 
-// Replace this with your real tests.
-test('it exists', function(assert) {
-    let controller = this.subject();
-    assert.ok(controller);
+test('shows loading', function(assert) {
+    controller.send('showLoading');
+    assert.equal(controller.get('isShowingLoading'), true);
+});
+
+test('hides loading', function(assert) {
+    controller.send('hideLoading');
+    assert.equal(controller.get('isShowingLoading'), false);
+});
+
+test('shows modal', function(assert) {
+    controller.send('showSuccessModal');
+    assert.equal(controller.get('isShowingSuccessModal'), true);
+});
+
+test('hides modal', function(assert) {
+    controller.send('hideSuccessModal');
+    assert.equal(controller.get('isShowingSuccessModal'), false);
+});
+
+test('hide modal and go back to friends/list', function(assert) {
+    const stub = this.stub(controller, 'transitionToRoute');
+    controller.send('goBack');
+    assert.equal(controller.get('isShowingSuccessModal'), false);
+    assert.equal(stub.calledWith('friends.list'), true);
+});
+
+test('show loading and after finished saving, hide loading', function(assert) {
+    const changeset = new Changeset({}, null);
+    controller.send('save', changeset);
+    assert.equal(controller.get('isShowingLoading'), true);
+    wait().then(() => {
+        assert.equal(controller.get('isShowingLoading'), false);
+    });
+});
+
+test('show modal after finished saving', function(assert) {
+    const changeset = new Changeset({}, null);
+    controller.send('save', changeset);
+    wait().then(() => {
+        assert.equal(controller.get('isShowingSuccessModal'), true);        
+    });
 });
