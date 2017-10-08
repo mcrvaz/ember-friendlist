@@ -36,21 +36,3 @@ test('hide modal and go back to friends/list', function(assert) {
     assert.equal(controller.get('isShowingModal'), false);
     assert.equal(stub.calledWith('friends.list'), true);
 });
-
-test('show loading and after finished saving, hide loading', function(assert) {
-    const changeset = new Changeset({}, null);
-    controller.send('save', changeset);
-    assert.equal(controller.get('isShowingLoading'), true);
-    wait().then(() => {
-        assert.equal(controller.get('isShowingLoading'), false);
-    });
-});
-
-test('show modal after finished saving', function(assert) {
-    const changeset = new Changeset({}, null);
-    controller.send('save', changeset);
-    wait().then(() => {
-        assert.equal(controller.get('isShowingModal'), true);        
-    });
-});
-

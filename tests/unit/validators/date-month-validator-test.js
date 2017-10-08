@@ -13,10 +13,10 @@ test('value between previousMonth and nextMonth', function(assert) {
 
 test('value before previousMonth', function(assert) {
     let result = validateDateMonthValidator()('key', moment().subtract(1, 'months').subtract(1, 'days'));
-    assert.equal(result, `Data deve estar entre ${previousMonth.format('DD/MM/YYYY')} e ${nextMonth.format('DD/MM/YYYY')}`);
+    assert.equal(result, `Data deve estar entre ${previousMonth.format('DD-MM-YYYY')} e ${nextMonth.format('DD-MM-YYYY')}`);
 });
 
 test('value after nextMonth', function(assert) {
     let result = validateDateMonthValidator()('key', moment().add(1, 'months').add(1, 'days'));
-    assert.equal(result, `Data deve estar entre ${previousMonth.format('DD/MM/YYYY')} e ${nextMonth.format('DD/MM/YYYY')}`);
+    assert.equal(result, `Data deve estar entre ${previousMonth.format('DD-MM-YYYY')} e ${nextMonth.format('DD-MM-YYYY')}`);
 });

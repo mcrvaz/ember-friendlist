@@ -1,7 +1,7 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-friendlist/tests/helpers/module-for-acceptance';
 
-const id = '59d835fead00a4002538bb37';
+const id = '59b18f31592fe8001b9bd8c3';
 moduleForAcceptance('Acceptance | friends/edit', {
     beforeEach() {
         visit(`/friends/edit/${id}`);
