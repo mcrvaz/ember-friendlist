@@ -26,7 +26,7 @@ export default Ember.Controller.extend({
                 name: changeset.get('name'),
                 lastname: changeset.get('lastname'),
                 friendsSince: changeset.get('friendsSince')
-            })
+            });
             return friend.save().then(() => {
                 this.send('hideLoading');
                 this.send('showModal');         
