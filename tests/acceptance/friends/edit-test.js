@@ -29,7 +29,7 @@ test(`visiting /friends/detail/${model.id} from /friends/edit/${model.id}`, func
 test('edit with empty name', function(assert) {
     fillIn('#name-input', null);
     fillIn('#lastname-input', "lastname");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Nome deve ser preenchido.");
     });
@@ -38,7 +38,7 @@ test('edit with empty name', function(assert) {
 test('edit with less than 3 characters name', function(assert) {
     fillIn('#name-input', "a");
     fillIn('#lastname-input', "lastname");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Nome deve conter pelo menos 3 caracteres.");
     });
@@ -46,8 +46,8 @@ test('edit with less than 3 characters name', function(assert) {
 
 test('edit with empty last name', function(assert) {
     fillIn('#name-input', "name");
-    fillIn('#lastname-input', null);
-    fillIn('#friendsSince-input', moment());
+    fillIn('#lastname-input', null);   
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Sobrenome deve ser preenchido.");
     });
@@ -56,7 +56,7 @@ test('edit with empty last name', function(assert) {
 test('edit with less than 3 characters last name', function(assert) {
     fillIn('#name-input', "name");
     fillIn('#lastname-input', "a");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Sobrenome deve conter pelo menos 3 caracteres.");
     });
@@ -65,7 +65,7 @@ test('edit with less than 3 characters last name', function(assert) {
 test('edit with less than 3 characters last name', function(assert) {
     fillIn('#name-input', "name");
     fillIn('#lastname-input', "a");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Sobrenome deve conter pelo menos 3 caracteres.");
     });

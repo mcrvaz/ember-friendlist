@@ -29,7 +29,7 @@ test(`visiting /friends/list from /friends/create`, function(assert) {
 test('create with empty name', function(assert) {
     fillIn('#name-input', null);
     fillIn('#lastname-input', "lastname");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Nome deve ser preenchido.");
     });
@@ -38,7 +38,7 @@ test('create with empty name', function(assert) {
 test('create with less than 3 characters name', function(assert) {
     fillIn('#name-input', "a");
     fillIn('#lastname-input', "lastname");
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Nome deve conter pelo menos 3 caracteres.");
     });
@@ -47,7 +47,7 @@ test('create with less than 3 characters name', function(assert) {
 test('create with empty last name', function(assert) {
     fillIn('#name-input', "name");
     fillIn('#lastname-input', null);
-    fillIn('#friendsSince-input', moment());
+    click('#save-btn');
     andThen(() => {
         assert.equal(find('ul#errors li:first').text(), "Sobrenome deve ser preenchido.");
     });
