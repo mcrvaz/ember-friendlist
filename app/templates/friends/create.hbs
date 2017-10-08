@@ -8,8 +8,10 @@
     {{#modal-dialog onClose="hideModal"
         targetAttachment="center"
         translucentOverlay=true}}
-        <label>Amigo cadastrado</label>
-        <button class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
+        <div id="success-modal">
+            <label>Amigo cadastrado</label>
+            <button id="btn-created" class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
+        </div>
     {{/modal-dialog}}
 {{/if}}
 

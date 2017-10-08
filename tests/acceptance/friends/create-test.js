@@ -2,6 +2,11 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'ember-friendlist/tests/helpers/module-for-acceptance';
 import moment from 'moment';
 
+const model = {
+    name: 'AcceptanceCreate',
+    lastname: 'Test',
+    friendsSince: '08/10/2017'
+};
 moduleForAcceptance('Acceptance | friends/create', {
     beforeEach() {
         visit('/friends/create');
@@ -48,11 +53,19 @@ test('create with empty last name', function(assert) {
     });
 });
 
-test('create with less than 3 characters last name', function(assert) {
-    fillIn('#name-input', "name");
-    fillIn('#lastname-input', "a");
-    fillIn('#friendsSince-input', moment());
+// should test invalid cases with date picker
+
+test('create success with default date', function(assert) {
+    fillIn('#name-input', model.name);
+    fillIn('#lastname-input', model.lastname);
+    click('#save-btn');
     andThen(() => {
-        assert.equal(find('ul#errors li:first').text(), "Sobrenome deve conter pelo menos 3 caracteres.");
+        assert.notOk(find('ul#errors li:first').text()); //assert no errors occurred
+        assert.ok(find('div#success-modal').text()); //assert modal is shown
+        click('button#btn-created');
+        andThen(() => {
+            assert.equal(currentURL(), '/friends/list');
+            assert.ok(find(`td:contains(${model.name})`).text());
+        });
     });
 });

@@ -7,7 +7,7 @@ const DESC = "desc";
 export default Ember.Component.extend({
     ordering: ASC,
     icon: Ember.computed('ordering', function() {
-        return this.get('ordering') === ASC ? CHEVRON_UP:CHEVRON_DOWN;
+        return this.get('ordering') === ASC ? CHEVRON_DOWN:CHEVRON_UP;
     }),
     attr: null,
     actions: {

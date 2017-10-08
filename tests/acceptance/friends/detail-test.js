@@ -1,31 +1,46 @@
 import { test } from 'qunit';
 import moduleForAcceptance from 'ember-friendlist/tests/helpers/module-for-acceptance';
 
-const id = '59b18f31592fe8001b9bd8c3';
+const model = {
+    id: '59da3adc434f0a001bb60cb4',
+    name: 'AcceptanceTest',
+    lastname: 'Detail',
+    friendsSince: '08/10/2017'
+};
 moduleForAcceptance('Acceptance | friends/detail', {
     beforeEach() {
-        visit(`/friends/detail/${id}`);
+        visit(`/friends/detail/${model.id}`);
     },
 });
 
-test(`visiting /friends/detail/${id}`, function(assert) {
-    andThen(function() {
-        assert.equal(currentURL(), `/friends/detail/${id}`);
+test(`visiting /friends/detail/${model.id}`, function(assert) {
+    andThen(() => {
+        assert.equal(currentURL(), `/friends/detail/${model.id}`);
     });
 });
 
-test(`visiting /friends/edit/${id} from /friends/detail/${id}`, function(assert) {
-    andThen(function() {
+test(`visiting /friends/edit/${model.id} from /friends/detail/${model.id}`, function(assert) {
+    andThen(() => {
         click('button#edit');
-        andThen(() => assert.equal(currentURL(), `/friends/edit/${id}`));
+        andThen(() => assert.equal(currentURL(), `/friends/edit/${model.id}`));
     });
 });
 
-test(`visiting /friends/list from /friends/detail/${id}`, function(assert) {
-    andThen(function() {
+test(`visiting /friends/list from /friends/detail/${model.id}`, function(assert) {
+    andThen(() => {
         click('div#back-button button');
         andThen(() => assert.equal(currentURL(), `/friends/list`));
     });
 });
 
-// should test invalid cases with date picker
+test(`name equals ${model.name}`, function(assert) {
+    andThen(() => assert.equal(find('#name').text(), `${model.name}`));
+});
+
+test(`lastname equals ${model.lastname}`, function(assert) {
+    andThen(() => assert.equal(find('#lastname').text(), `${model.lastname}`));
+});
+
+test(`friendsSince equals ${model.friendsSince}`, function(assert) {
+    andThen(() => assert.equal(find('#friendsSince').text(), `${model.friendsSince}`));
+});

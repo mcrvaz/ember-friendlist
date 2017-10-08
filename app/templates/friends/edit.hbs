@@ -8,8 +8,10 @@
     {{#modal-dialog onClose="hideSuccessModal"
         targetAttachment="center"
         translucentOverlay=true}}
-        <label>Amigo editado</label>
-        <button class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
+        <div id="success-modal">
+            <label>Amigo editado</label>
+            <button id="btn-edited" class="btn btn-default btn-block" {{action 'goBack'}}>Voltar</button>
+        </div>
     {{/modal-dialog}}
 {{/if}}
 
