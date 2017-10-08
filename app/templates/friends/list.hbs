@@ -3,13 +3,13 @@
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>Data de Início da Amizade</th>
+                <th>{{#sortable-field attr="fullName" sortBy=(action 'sortBy')}} Nome {{/sortable-field}}</th>
+                <th>{{#sortable-field attr="lastname" sortBy=(action 'sortBy')}} Sobrenome {{/sortable-field}}</th>
+                <th>{{#sortable-field attr="friendsSince" sortBy=(action 'sortBy')}} Data de Início da Amizade {{/sortable-field}}</th>
             </tr>
         </thead>
         <tbody>
-        {{#each model as |friend|}}
+        {{#each sortedContent as |friend|}}
             {{#link-to "friends.detail" friend tagName="tr"}}
                 <td>{{friend.name}}</td> 
                 <td>{{friend.lastname}}</td> 

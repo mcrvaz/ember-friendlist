@@ -56,13 +56,3 @@ test('create with less than 3 characters last name', function(assert) {
         assert.equal(find('ul#errors li:first').text(), "Sobrenome deve conter pelo menos 3 caracteres.");
     });
 });
-
-test('create with empty friends since', function(assert) {
-    fillIn('#name-input', "name");
-    fillIn('#lastname-input', "lastname");
-    fillIn('#friendsSince-input', null);
-    click('button#save-btn');
-    andThen(() => {
-        assert.equal(find('ul#errors li:first').text(), "Data deve ser preenchida.");
-    });
-});
