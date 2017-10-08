@@ -22,9 +22,14 @@ export default Ember.Controller.extend({
         },
         save(changeset) {
             this.send('showLoading');
-            return changeset.save().then(() => {
+            let friend = this.get('store').createRecord('friend', {
+                name: changeset.get('name'),
+                lastname: changeset.get('lastname'),
+                friendsSince: changeset.get('friendsSince')
+            })
+            return friend.save().then(() => {
                 this.send('hideLoading');
-                this.send('showModal');     
+                this.send('showModal');         
             });
         },
     }

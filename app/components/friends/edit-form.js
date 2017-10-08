@@ -4,14 +4,9 @@ import FriendValidations from '../../validations/friends';
 
 export default Ember.Component.extend({
     FriendValidations,
-    didReceiveAttrs() {
-        this._super(...arguments);
-        let model = this.get('model');
-        model.set('friendsSince', moment(model.get('friendsSince')).toDate());
-    },
     isShowingConfirmModal: false,
-    previousMonth: moment().subtract(1, 'months').format("DD/MM/YYYY"),
-    nextMonth: moment().add(1, 'months').format("DD/MM/YYYY"),
+    previousMonth: moment().subtract(1, 'months').format("DD-MM-YYYY"),
+    nextMonth: moment().add(1, 'months').format("DD-MM-YYYY"),
     actions: {
         hideConfirmModal() {
             this.set('isShowingConfirmModal', false);
@@ -27,10 +22,9 @@ export default Ember.Component.extend({
             this.send('hideConfirmModal');
             changeset.validate().then(function() {
                 if(changeset.get("isValid")) {
-                    changeset.set('friendsSince', moment(changeset.friendsSince).format("YYYY-MM-DD"));
+                    changeset.set('friendsSince', moment(changeset.get('friendsSince')).format("YYYY-MM-DD"));
                     self.attrs.save(changeset);
                 }
-                self.set('showErrors', true);
             });
         },
         rollback(changeset) {

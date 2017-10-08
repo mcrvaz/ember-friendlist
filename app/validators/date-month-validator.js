@@ -6,7 +6,7 @@ export default function validateDateMonthValidator(options = {}) {
         let currentValue = moment(newValue);
         let previousMonth = moment().subtract(1, 'months');
         let nextMonth = moment().add(1, 'months');
-        let message = options.message ? options.message : `Data deve estar entre ${previousMonth.format("DD/MM/YYYY")} e ${nextMonth.format("DD/MM/YYYY")}`;
+        let message = options.message ? options.message : `Data deve estar entre ${previousMonth.format("DD-MM-YYYY")} e ${nextMonth.format("DD-MM-YYYY")}`;
         return currentValue.isBetween(previousMonth, nextMonth, 'day', '[]') || message;
     };
 }

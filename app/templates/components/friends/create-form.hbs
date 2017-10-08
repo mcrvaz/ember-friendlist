@@ -13,15 +13,16 @@
         </div>
     </div>
     <div class="row">
+        {{changeset.friendsSince}}
         <div class="col-sm-12 form-group">
-            <label>Data de Início da Amizade:</label>  
+            <label>Data de Início da Amizade:</label>
             {{bootstrap-datepicker 
                 id="friendsSince-input"
                 class="form-control"
-                value=changeset.friendsSince 
+                value=changeset.friendsSince
                 startDate=previousMonth endDate=nextMonth
                 autoclose=true 
-                format="dd/mm/yyyy" language="pt-BR"}}
+                format="dd-mm-yyyy" language="pt-BR"}}
         </div>
     </div>
     <ul id="errors" class="list-group">
