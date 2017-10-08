@@ -16,8 +16,8 @@ export default Ember.Component.extend({
         },
         sortBy() {
             const newOrdering = this.get('actions').getOppositeOrdering(this.get('ordering'));
-            this.set('ordering', newOrdering);
             const attr = this.get('attr');
+            this.set('ordering', newOrdering);
             this.attrs.sortBy([`${attr}:${newOrdering}`]);
         }
     }
